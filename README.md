@@ -3,7 +3,7 @@ Ecco una spiegazione dettagliata di alcuni comandi utilizzati nella configurazio
 # **Apache SSL Configuration Guide**
 
 ## **Comandi utilizzati nella configurazione**
-Questa guida spiega il significato di ogni comando usato nella configurazione di Apache per gestire connessioni HTTPS con SSL/TLS e certificati client.
+Questa guida spiega il significato di ogni comando usato nella configurazione di Apache per gestire connessioni HTTPS con SSL/TLS e certificati client. 🚀
 
 ---
 
@@ -92,44 +92,3 @@ Questa guida spiega il significato di ogni comando usato nella configurazione di
   - Specifica il file di log per registrare tutte le richieste di accesso al Virtual Host, utilizzando il formato standard **combined** (incluso IP, User-Agent, ecc.).
 
 ---
-
-## **Configurazione completa di esempio**
-
-```apache
-<VirtualHost *:443>
-    ServerName www.giornalisti_cn.it
-    ServerAlias giornalisti_cn.it
-
-    DocumentRoot /var/www/html/giornalisti
-
-    SSLEngine on
-    SSLProtocol TLSv1.2
-
-    SSLCertificateFile /etc/apache2/myconf/server/server.crt
-    SSLCertificateKeyFile /etc/apache2/myconf/server/server.key
-    SSLCertificateChainFile /etc/apache2/myconf/chain.crt
-    SSLCACertificateFile /etc/apache2/myconf/rootCA/rootCA.crt
-
-    SSLVerifyClient require
-    SSLVerifyDepth 2
-    SSLOptions +OptRenegotiate
-
-    <Directory /var/www/html/giornalisti>
-        SSLRequire %{SSL_CLIENT_S_DN_CN} eq "Davide" || %{SSL_CLIENT_S_DN_CN} eq "Mario"
-        SSLOptions +StdEnvVars +ExportCertData
-    </Directory>
-
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-```
-
----
-
-## **Note aggiuntive**
-- **`SSLVerifyClient`**: Può essere impostato su `optional` se vuoi che il certificato client sia opzionale.
-- **`SSLProtocol`**: Può includere più protocolli separati da spazi, ad esempio: `TLSv1.2 TLSv1.3`.
-
----
-
-Con questa guida, hai una documentazione chiara e dettagliata sui comandi utilizzati nella configurazione di Apache per SSL/TLS e certificati client. Se hai bisogno di ulteriori dettagli, fammi sapere! 🚀

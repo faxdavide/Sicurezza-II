@@ -1,0 +1,7 @@
+# Cancella tutte le entry in ou=personale_amministrativo
+
+dn: cn=Sofia Neri,ou=personale_amministrativo,dc=giornalisti,dc=org
+changetype: delete
+
+dn: ou=personale_amministrativo,dc=giornalisti,dc=org
+changetype: delete

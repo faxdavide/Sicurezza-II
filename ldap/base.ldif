@@ -1,0 +1,51 @@
+# Dipartimento: Personale Operativo
+dn: ou=personale_operativo,dc=giornalisti,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: personale_operativo
+
+# Utente: Mario Rossi (Personale Operativo)
+dn: cn=Mario Rossi,ou=personale_operativo,dc=giornalisti,dc=org
+objectClass: inetOrgPerson
+cn: Mario Rossi
+sn: Rossi
+givenName: Mario
+mail: mario.rossi@giornalisti.org
+uid: mrossi
+userPassword: mario123
+
+# Utente: Davide Bianchi (Personale Operativo)
+dn: cn=Davide Bianchi,ou=personale_operativo,dc=giornalisti,dc=org
+objectClass: inetOrgPerson
+cn: Davide Bianchi
+sn: Bianchi
+givenName: Davide
+mail: davide.bianchi@giornalisti.org
+uid: dbianchi
+userPassword: davide123
+
+# Dipartimento: Personale Amministrativo
+dn: ou=personale_amministrativo,dc=giornalisti,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: personale_amministrativo
+
+# Utente: Gabriele Verdi (Personale Amministrativo)
+dn: cn=Gabriele Verdi,ou=personale_amministrativo,dc=giornalisti,dc=org
+objectClass: inetOrgPerson
+cn: Gabriele Verdi
+sn: Verdi
+givenName: Gabriele
+mail: gabriele.verdi@giornalisti.org
+uid: gverdi
+userPassword: gabriele123
+
+# Utente: Sofia Neri (Personale Amministrativo)
+dn: cn=Sofia Neri,ou=personale_amministrativo,dc=giornalisti,dc=org
+objectClass: inetOrgPerson
+cn: Sofia Neri
+sn: Neri
+givenName: Sofia
+mail: sofia.neri@giornalisti.org
+uid: sneri
+userPassword: sofia123

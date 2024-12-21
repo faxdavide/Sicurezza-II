@@ -1,6 +1,0 @@
-# Cambia l'OU di Gabriele Verdi
-dn: cn=Gabriele Verdi,ou=personale_amministrativo,dc=giornalisti,dc=org
-changetype: moddn
-newrdn: cn=Gabriele Verdi
-deleteoldrdn: 0
-newsuperior: ou=IT Department,dc=giornalisti,dc=org

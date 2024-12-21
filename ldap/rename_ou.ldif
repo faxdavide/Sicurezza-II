@@ -1,5 +1,0 @@
-# Rinomina la OU personale_operativo in IT Department
-dn: ou=personale_operativo,dc=giornalisti,dc=org
-changetype: moddn
-newrdn: ou=IT Department
-deleteoldrdn: 1

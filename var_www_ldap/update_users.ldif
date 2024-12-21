@@ -1,0 +1,13 @@
+# Aggiorna Mario Rossi
+dn: cn=Mario Rossi,ou=personale_operativo,dc=giornalisti,dc=org
+changetype: moddn
+newrdn: cn=Mario Rossi
+deleteoldrdn: 0
+newsuperior: ou=IT Department,dc=giornalisti,dc=org
+
+# Aggiorna Davide Bianchi
+dn: cn=Davide Bianchi,ou=personale_operativo,dc=giornalisti,dc=org
+changetype: moddn
+newrdn: cn=Davide Bianchi
+deleteoldrdn: 0
+newsuperior: ou=IT Department,dc=giornalisti,dc=org

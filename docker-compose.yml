@@ -1,0 +1,40 @@
+services:    
+    HostAPACHE:
+        build: .
+        image: seed-ubuntu-base-image
+        container_name: apache-container
+        tty: true
+        cap_add:
+            - ALL
+        networks:
+            net-10.10.0.0:
+                ipv4_address: 10.10.0.7
+        volumes:
+            - /home/seed/docker/10_10_0_7/var_www_html:/var/www/html
+            - /home/seed/docker/10_10_0_7/etc/apache2:/etc/apache2
+        working_dir: /var/www/html
+        command: bash -c "apachectl start && tail -f /dev/null"
+        
+    HostLDAP:
+        build: .
+        image: seed-ubuntu-base-image
+        container_name: ldap-container
+        tty: true
+        cap_add:
+            - ALL
+        networks:
+            net-10.10.0.0:
+                ipv4_address: 10.10.0.8
+        volumes:
+            - /home/seed/docker/10_10_0_8/var_www_ldap:/var/www/ldap
+            - /home/seed/docker/10_10_0_8/var_lib_ldap:/var/lib/ldap
+            - /home/seed/docker/10_10_0_8/etc_ldap:/etc/ldap
+        working_dir: /var/www/ldap
+        command: bash -c "slapd -h 'ldap:/// ldaps:///' && tail -f /dev/null"
+
+networks:
+    net-10.10.0.0:
+        name: net-10.10.0.0
+        ipam:
+            config:
+                - subnet: 10.10.0.0/24

@@ -1,0 +1,138 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.profile-info {
+    line-height: 1.5;
+}
+
+.button-container {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #007BFF;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 15px;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.button-info {
+    background-color: #007BFF;
+}
+
+.button-info:hover {
+    background-color: #0056b3;
+}
+
+.button-logout {
+    background-color: #FF5733;
+}
+
+.button-logout:hover {
+    background-color: #C70039;
+}
+
+.user-info-container {
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.user-info-container h2 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.5em;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.user-info-content p {
+    margin: 5px 0;
+    font-size: 1em;
+    color: #555;
+}
+
+.user-info-content p strong {
+    color: #000;
+}
+
+.metadata-section {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.metadata-section h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.2em;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.metadata-section pre {
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-size: 0.95em;
+    color: #444;
+}
+
+.metadata-section h3 {
+    margin-top: 0;
+    color: #ffffff;
+    font-size: 1.5em;
+    text-align: center;
+    background-color: #4CAF50;
+    padding: 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#app-metadata h3 {
+    background-color: #2196F3;
+}

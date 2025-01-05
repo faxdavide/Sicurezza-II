@@ -4,16 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+    <script src="{{ url_for('static', filename='app.js') }}" defer></script>
 </head>
 <body>
-    <h1>Welcome to the App</h1>
-    {% if session %}
-        <p>You are logged in!</p>
-        <pre>{{ pretty }}</pre>
-        <a href="/logout">Logout</a>
-    {% else %}
-        <p>You are not logged in.</p>
-        <a href="/login">Login</a>
-    {% endif %}
+    <div class="container">
+        <h1>Welcome to the App</h1>
+
+        {% if session %}
+            <div class="profile">
+                <img src="{{ user['picture'] }}" alt="Profile Picture">
+                <div class="profile-info">
+                    <p><strong>Name:</strong> {{ user['name'] }}</p>
+                    <p><strong>Email:</strong> {{ user['email'] }}</p>
+                    <p><strong>Nickname:</strong> {{ user['nickname'] }}</p>
+                    <p><strong>User ID:</strong> {{ user['sub'] }}</p>
+                </div>
+            </div>
+            <div class="button-container">
+                <a href="#" id="userInfoButton" class="button button-info">User Info</a>
+                <a href="/get_token_api" class="button button-info">Get Date</a>
+                <a href="/logout" class="button button-logout">Logout</a>
+            </div>
+
+            <div class="user-info-container" id="user-info-container">
+                <h2>User Information</h2>
+                <div id="user-metadata" class="metadata-section">
+                    <!-- user metadata qui -->
+                </div>
+                <div id="app-metadata" class="metadata-section">
+                    <!-- app Metadata qui -->
+                </div>
+            </div>
+            <!-- datetime qui -->
+            <div class="date-display" style="margin-top: 20px; font-weight: bold;"></div>
+
+        {% else %}
+            <p>You are not logged in.</p>
+            <a href="/login">Login</a>
+        {% endif %}
+    </div>
 </body>
 </html>

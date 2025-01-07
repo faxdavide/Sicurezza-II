@@ -32,21 +32,47 @@ console.log('Body parser middleware configured');
 // ===============================================================================
 // ||                           CONFIG MIDDLEWARE                               ||
 // ===============================================================================
-
+/**
+    Richiesta HTTP in ingresso:
+    - il middleware intercetta ogni richiesta verso le rotte protette.
+    - cerca un token JWT nell'intestazione Authorization della richiesta.
+    
+    Validazione del token:
+    - decodifica e valida il token:
+    - verifica che sia stato emesso dall'issuer corretto.
+    - verifica che l'audience corrisponda al valore previsto.
+    - verifica la firma del token utilizzando la chiave pubblica ottenuta dal JWKS URI.
+*/
 const checkJwt = jwt({
+    /* 
+        usiamo la libreria jwks-rsa per gestire automaticamente le chiavi pubbliche necessarie 
+        per validare i token firmati.
+    */
     secret: jwksRsa.expressJwtSecret({
         cache: true,
         rateLimit: true,
         jwksRequestsPerMinute: 5,
-        jwksUri: process.env.JWKSURI
+        /*
+            risorsa fornita dall'autorità di autenticazione "Auth0" 
+            per recuperare le chiavi pubbliche necessarie.
+        */
+        jwksUri: process.env.JWKSURI 
     }),
-    audience: process.env.API_AUDIENCE,
-    issuer: process.env.ISSUER,
-    algorithms: [process.env.ALGORITHM]
+    audience: process.env.API_AUDIENCE,     // verifica che il token sia destinato all'API corretta
+    issuer: process.env.ISSUER,             // verifica che il token sia stato emesso da un'autorità di autenticazione specifica (Auth0).
+    algorithms: [process.env.ALGORITHM]     // specifica l'algoritmo crittografico (RS256) utilizzato per firmare il token.
 });
 console.log('JWT middleware configured');
 
+
+/**
+ * verifica se il token JWT associato alla richiesta contiene i permessi (o scopes) 
+ * necessari per accedere a una risorsa protetta.
+ * @param {*} requiredScopes scope richiesti per accedere ad una risorsa
+ * @returns errore se gli scope mancano o andiamo avanti se sono corretti.
+ */
 const checkScopes = (requiredScopes) => (req, res, next) => {
+    // accediamo agli scopes contenuti nel token JWT attraverso req.auth.scope.
     const tokenScopes = req.auth.scope?.split(' ') || [];
     
     console.log('Token scopes:', tokenScopes);

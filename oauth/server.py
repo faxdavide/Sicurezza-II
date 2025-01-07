@@ -39,16 +39,21 @@ oauth.register(
     server_metadata_url=f'https://{env.get("AUTH0_DOMAIN")}/.well-known/openid-configuration'
 )
 
-
+# Avvia il flusso di autenticazione.
 @app.route("/login")
 def login():
+    # Redirige l'utente alla pagina di login di Auth0.
+    # Il parametro redirect_uri indica dove Auth0 deve reindirizzare l'utente dopo il login.
     return oauth.auth0.authorize_redirect(
         redirect_uri=url_for("callback", _external=True)
     )
 
-
+# Gestisce il reindirizzamento dopo il login.
 @app.route("/callback", methods=["GET", "POST"])
 def callback():
+    # Recupera il token di accesso e i dati utente (ID token).
+    # Memorizza le informazioni utente nella sessione Flask.
+    # Redirige alla homepage una volta completata l'autenticazione.
     token = oauth.auth0.authorize_access_token()
     userinfo = oauth.auth0.parse_id_token(token, nonce=None)
     session["user"] = userinfo
@@ -74,8 +79,11 @@ def logout():
 
 @app.route("/")
 def home():
+    print('--------------------')
+    print(session)
+    print('--------------------')
+    
     user = session.get("user")
-    # print("Session User:", user)
     return render_template(
         "home.html",
         user=user,
@@ -111,7 +119,11 @@ def get_token_api():
             resp_body = response.read()
             oauth = json.loads(resp_body)
             access_token = oauth.get('access_token')
-
+            
+            print('--------------------')
+            print(f'access_token: {access_token}')
+            print('--------------------')
+            
             return {"token": access_token}
     except Exception as e:
         return {"error": str(e)}, 500
@@ -143,6 +155,11 @@ def get_user_token():
         user_id = session.get("user", {}).get("sub")
         if not user_id:
             return {"error": "User ID not found in session"}, 403
+
+        print('--------------------')
+        print(f'access_token: {access_token}')
+        print(f'user_id: {user_id}')
+        print('--------------------')
 
         return {"token": access_token, "user_id": user_id}
     except Exception as e:
